@@ -2,9 +2,10 @@ import os
 import PyPDF2
 from typing import List
 
-class PDFLoader:
 
+class PDFLoader:
     """"Loads pdf from directory"""
+
     def __init__(self, directory: str):
         self.directory = directory
         self.pdf_files = self._get_pdf_files()
@@ -13,8 +14,8 @@ class PDFLoader:
         """get list of pdf files in the directory"""
         return [file for file in os.listdir(self.directory) if file.endswith(".pdf")]
 
-    def load_pdf(selfself, file_name: str) -> PyPDF2.PdfReader:
-        """loads a single single pdf file"""
+    def load_pdf(self, file_name: str) -> PyPDF2.PdfReader:
+        """loads a single pdf file"""
         file_path = os.path.join(self.directory, file_name)
         try:
             with open(file_path, 'rb') as file:
@@ -22,7 +23,6 @@ class PDFLoader:
         except FileNotFoundError:
             raise FileNotFoundError(f'File{file_path} not found')
 
-    def get_pdf_files(self)-> List[str]:
-        """Return list of pdf files in the directopry"""
+    def get_pdf_files(self) -> List[str]:
+        """Return list of pdf files in the directory"""
         return self.pdf_files
-
