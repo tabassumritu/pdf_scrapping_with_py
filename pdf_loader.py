@@ -18,8 +18,9 @@ class PDFLoader:
         """loads a single pdf file"""
         file_path = os.path.join(self.directory, file_name)
         try:
-            with open(file_path, 'rb') as file:
-                return PyPDF2.PdfReader(file)
+            file = open(file_path, 'rb')
+            pdf_reader = PyPDF2.PdfReader(file)
+            return pdf_reader, file
         except FileNotFoundError:
             raise FileNotFoundError(f'File{file_path} not found')
 

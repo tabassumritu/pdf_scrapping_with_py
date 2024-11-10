@@ -11,7 +11,8 @@ class SimpleScraper(PDFScraper):
         all_text = ''
         for page_num in range(len(self.pdf_reader.pages)):
             page = self.pdf_reader.pages[page_num]
-            all_text += page.extractText() + "\n"
+            all_text += page.extract_text() + "\n"
+            print(all_text)
 
         return all_text
 
