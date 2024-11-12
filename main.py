@@ -8,6 +8,7 @@ if __name__ == '__main__':
     export_format = ['json', 'csv']
 
     # initialize the manager with user-specified format
+    print('initialize PDF Scraping manager and scheduler')
     scraping_manager = PDFScrapingManager(directory, mode, export_format)
     schedular = TaskScheduler(scraping_manager)
 

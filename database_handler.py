@@ -38,6 +38,20 @@ class DatabaseHandler:
         self.cursor.execute("INSERT INTO pdf_log(file_name, status) VALUES(?,?)", (file_name, status))
         self.connection.commit()
 
+    def update_pdf_status(self, file_name: str, status: str):
+        """Update the status of a pdf in the log."""
+        print(f"Uploading status for {file_name}: {status}")
+        self.cursor.execute("UPDATE pdf_log SET status = ? WHERE file_name = ?", (status, file_name))
+        self.connection.commit()
+
+
+    def is_pdf_scraped(self, file_name: str):
+        """Checking if a pdf file has been already scraped"""
+        self.cursor.execute("SELECT 1 FROM pdf_log Where file_name = ? LIMIT 1", (file_name,))
+        result = self.cursor.fetchone() is not None
+        print(f"{file_name} scraped status: {'Already scraped' if result else 'Not Scraped yet'}")
+        return result
+
     def saved_scraped_data(self, file_name: str, data: Dict[int, str]):
         """saves scraped data to the database"""
         for page_num, content in data.items():

@@ -1,6 +1,6 @@
 import os
 import PyPDF2
-from typing import List
+from typing import List, Tuple
 
 
 class PDFLoader:
@@ -14,7 +14,7 @@ class PDFLoader:
         """get list of pdf files in the directory"""
         return [file for file in os.listdir(self.directory) if file.endswith(".pdf")]
 
-    def load_pdf(self, file_name: str) -> PyPDF2.PdfReader:
+    def load_pdf(self, file_name: str) -> Tuple[PyPDF2.PdfReader, 'file']:
         """loads a single pdf file"""
         file_path = os.path.join(self.directory, file_name)
         try:

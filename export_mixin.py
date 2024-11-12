@@ -30,9 +30,9 @@ class ExportMixin:
     def export_to_json(self, data: Dict[int, str], original_file_name: str) -> None:
         """Exports scraped data to a json file with  a custom name"""
         current_date = get_current_date()
-        file_name = f"{original_file_name.replace('.pdf', ' ')}_scraped_data_{current_date}.json"
-
-        with open(file_name, 'w') as json_file:
-            json.dump(data, json_file, indent=4)
+        file_name = f"./scraped_data/{original_file_name.replace('.pdf', ' ')}_scraped_data_{current_date}.json"
+        print(f'Saving data to {file_name} in JSON Format.')
+        with open(file_name, 'w', encoding='utf-8') as json_file:
+            json.dump(data, json_file, ensure_ascii=False,  indent=4)
 
         print(f'Data exported to json:{file_name}')
